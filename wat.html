@@ -1,0 +1,87 @@
+<html>
+<head>
+  <title>Cmd</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="files/slick/slick.css">
+  <link rel="stylesheet" type="text/css" href="files/slick/slick-theme.css">
+  <link rel="stylesheet" type="text/css" href="files/buttons.css">
+    <link rel="stylesheet" type="text/css" href="files/navbar.css">
+<script src="files/jquery-1.7.1.min.js"></script>
+    <script src="files/jquery.terminal-0.11.18.js"></script>
+<script src="files/jquery.mousewheel-min.js"></script>
+<link href="files/jquery.terminal-0.11.18.css" rel="stylesheet"/>
+  <style type="text/css">
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .slider {
+        width: 90%;
+        margin: 100px auto;
+    }
+
+    .slick-slide {
+      margin: 0px 20px;
+    }
+
+    .slick-slide img {
+      width: 100%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+        color: black;
+    }
+  </style>
+     <script>
+jQuery(document).ready(function($) {
+    var id = 1;
+    $('body').terminal(function(command, term) {
+        if (command == 'help') {
+            term.echo("Available commands are yes, yes, and no");
+        } else if (command == 'yes'){
+            term.echo('Clearance Recieved.  Continue?');
+            term.push(function(command, term) {
+                if (command == 'yes') {
+                    term.echo('Nuclear launch detected.  Please immediately depart for the nearest shelter.');
+                } else if (command == 'help') {
+                    term.echo('Available commands are yes, no, abort, and stop.');
+                } else if (command == 'abort') {
+                    term.echo('Please type supercalifragilisticexpialidocious to confirm abort command.  5 seconds to command time out.');
+                } else if (command == 'supercalifragilisticexpialidocious') {
+                    term.echo('Abort failed. Nuclear launch detected.  Please immediately depart for the nearest shelter.');
+                } else if (command == 'stop') {
+                    term.echo('You can not stop the future!');
+                } else {
+                    term.echo('unknown command ' + command);
+                }
+            }, {
+                prompt: '> ',
+                name: ''});
+        } else {
+            term.echo("unknow command " + command);
+        }
+    }, {
+        greetings: "Codes recieved and authenticated.  Continue?",
+        onBlur: function() {
+            // prevent loosing focus
+            return false;
+        }
+    });
+});
+
+</script>
+</head>
+<body>
+
+ 
+
+
+
+</body>
+</html>
